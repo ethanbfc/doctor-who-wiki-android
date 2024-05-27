@@ -1,4 +1,4 @@
-package com.ethanmurray.doctorwhowiki.ui.theme
+package com.ethanmurray.doctorwhowiki.ui.resources
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
