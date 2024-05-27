@@ -23,6 +23,8 @@ fun SplashScreen() {
     val viewModel = koinViewModel<SplashViewModel>()
     val state by viewModel.state.collectAsState()
 
+    // TODO: Navigate to HomeScreen when state=Success
+
     SplashScreenContent(
         state = state
     )

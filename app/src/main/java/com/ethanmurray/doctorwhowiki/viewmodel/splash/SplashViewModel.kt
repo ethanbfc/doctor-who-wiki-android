@@ -22,6 +22,7 @@ open class SplashViewModel(): ViewModel() {
 
     sealed class State {
         object Fetching: State()
+        object FetchError: State()
         object Success: State()
     }
 }
