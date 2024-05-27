@@ -44,3 +44,5 @@ fun GreetingPreview() {
         Greeting("Android")
     }
 }
+
+// API: https://api.catalogopolis.xyz/docs/
