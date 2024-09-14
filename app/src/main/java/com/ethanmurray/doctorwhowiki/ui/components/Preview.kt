@@ -8,7 +8,7 @@ import com.ethanmurray.doctorwhowiki.ui.resources.RootTheme
 
 @Composable
 fun PreviewSurface(
-    color: Color = ColorPalette.Grey,
+    color: Color = ColorPalette.DarkBlue,
     content: @Composable () -> Unit
 ) = RootTheme {
     Surface(color = color, content = content)

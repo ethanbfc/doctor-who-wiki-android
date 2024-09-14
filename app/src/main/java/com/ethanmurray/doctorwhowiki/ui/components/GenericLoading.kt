@@ -1,5 +1,6 @@
 package com.ethanmurray.doctorwhowiki.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -8,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.ethanmurray.doctorwhowiki.ui.resources.ColorPalette
 
 private const val previewGroup = "Components - Generic Error"
 
@@ -17,7 +19,7 @@ fun GenericLoading() = Column(
     horizontalAlignment = Alignment.CenterHorizontally
 ) {
     Spacer(modifier = Modifier.weight(1f))
-    CircularProgressIndicator()
+    CircularProgressIndicator(color = ColorPalette.LightBlue)
     Spacer(modifier = Modifier.weight(1f))
 }
 

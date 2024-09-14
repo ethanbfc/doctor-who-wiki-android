@@ -27,8 +27,8 @@ fun GenericError(
 ) {
     Text(
         text = stringResource(id = R.string.generic_error_message),
-        style = MaterialTheme.typography.bodyMedium,
-        color = ColorPalette.Black
+        style = MaterialTheme.typography.bodyLarge,
+        color = ColorPalette.NeutralWhite
     )
 
     DoctorWhoWikiButton(
@@ -40,5 +40,5 @@ fun GenericError(
 @Preview(name = "Error component", group = previewGroup)
 @Composable
 fun ErrorComponentPreview() = PreviewSurface {
-    GenericError {}
+    GenericError(onRetryTap = {})
 }

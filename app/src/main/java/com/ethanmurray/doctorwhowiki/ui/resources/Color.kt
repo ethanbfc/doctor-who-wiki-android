@@ -11,6 +11,12 @@ object ColorPalette {
     val PurpleGrey40 = Color(0xFF625b71)
     val Pink40 = Color(0xFF7D5260)
 
+    // Basic Colours
+    val NeutralWhite = Color(0xFFFFFFFF)
     val Black = Color(0xFF000000)
-    val Grey = Color(0xFF888888)
+
+    // Doctor Who Colours
+    val LightBlue = Color(0xFF6F8EA9)
+    val Blue = Color(0xFF003B6F)
+    val DarkBlue = Color(0xFF00203C)
 }
