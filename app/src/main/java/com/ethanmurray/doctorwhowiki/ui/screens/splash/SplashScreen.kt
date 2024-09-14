@@ -1,17 +1,28 @@
 package com.ethanmurray.doctorwhowiki.ui.screens.splash
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.ethanmurray.doctorwhowiki.R
 import com.ethanmurray.doctorwhowiki.destinations.HomeScreenDestination
+import com.ethanmurray.doctorwhowiki.ui.components.GenericError
 import com.ethanmurray.doctorwhowiki.ui.components.GenericLoading
 import com.ethanmurray.doctorwhowiki.ui.components.PreviewSurface
 import com.ethanmurray.doctorwhowiki.ui.components.effects.ExecuteOnInstanceEffect
+import com.ethanmurray.doctorwhowiki.ui.resources.ColorPalette
 import com.ethanmurray.doctorwhowiki.viewmodel.splash.SplashViewModel
 import com.ethanmurray.doctorwhowiki.viewmodel.splash.SplashViewModel.State
 import com.ramcosta.composedestinations.annotation.Destination
@@ -35,17 +46,33 @@ fun SplashScreen(
     }
 
     SplashScreenContent(
-        state = state
+        state = state,
+        onRetryTap = viewModel::fetch
     )
 }
 
 @Composable
 fun SplashScreenContent(
-    state: State
+    state: State,
+    onRetryTap: () -> Unit
 ) = Column(
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier
+        .fillMaxSize()
+        .background(color = ColorPalette.DarkBlue),
+    horizontalAlignment = Alignment.CenterHorizontally
 ) {
-    if (state is State.Fetching) {
+    Spacer(modifier = Modifier.height(164.dp))
+    Text(
+        text = stringResource(id = R.string.app_name),
+        style = MaterialTheme.typography.titleLarge,
+        color = ColorPalette.LightBlue,
+        textAlign = TextAlign.Center
+    )
+    if (state is State.FetchError) {
+        Spacer(modifier = Modifier.weight(0.25f))
+        GenericError(onRetryTap = onRetryTap)
+        Spacer(modifier = Modifier.weight(1f))
+    } else {
         GenericLoading()
     }
 }
@@ -54,14 +81,16 @@ fun SplashScreenContent(
 @Composable
 fun SplashScreenFetchingPreview() = PreviewSurface {
     SplashScreenContent(
-        state = State.Fetching
+        state = State.Fetching,
+        onRetryTap = {}
     )
 }
 
-@Preview(name = "Splash Screen - Success", group = previewGroup)
+@Preview(name = "Splash Screen - Fetch Error", group = previewGroup)
 @Composable
-fun SplashScreenSuccessPreview() = PreviewSurface {
+fun SplashScreenFetchErrorPreview() = PreviewSurface {
     SplashScreenContent(
-        state = State.Success
+        state = State.FetchError,
+        onRetryTap = {}
     )
 }
