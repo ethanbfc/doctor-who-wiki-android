@@ -8,22 +8,31 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.ethanmurray.doctorwhowiki.destinations.HomeScreenDestination
 import com.ethanmurray.doctorwhowiki.ui.components.GenericLoading
 import com.ethanmurray.doctorwhowiki.ui.components.PreviewSurface
+import com.ethanmurray.doctorwhowiki.ui.components.effects.ExecuteOnInstanceEffect
 import com.ethanmurray.doctorwhowiki.viewmodel.splash.SplashViewModel
 import com.ethanmurray.doctorwhowiki.viewmodel.splash.SplashViewModel.State
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.koinViewModel
 
 private const val previewGroup = "Splash Screen"
 
+@RootNavGraph(start = true)
 @Destination
 @Composable
-fun SplashScreen() {
+fun SplashScreen(
+    navigator: DestinationsNavigator
+) {
     val viewModel = koinViewModel<SplashViewModel>()
     val state by viewModel.state.collectAsState()
 
-    // TODO: Navigate to HomeScreen when state=Success
+    ExecuteOnInstanceEffect<State, State.Success>(viewModel.state) {
+        navigator.navigate(HomeScreenDestination)
+    }
 
     SplashScreenContent(
         state = state
@@ -38,8 +47,6 @@ fun SplashScreenContent(
 ) {
     if (state is State.Fetching) {
         GenericLoading()
-    } else {
-        Text(text = "Placeholder splash screen")
     }
 }
 
