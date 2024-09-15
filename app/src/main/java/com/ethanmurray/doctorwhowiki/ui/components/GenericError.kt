@@ -2,6 +2,7 @@ package com.ethanmurray.doctorwhowiki.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -25,16 +26,17 @@ fun GenericError(
     verticalArrangement = Arrangement.spacedBy(4.dp),
     horizontalAlignment = Alignment.CenterHorizontally
 ) {
+    Spacer(modifier = Modifier.weight(1f))
     Text(
         text = stringResource(id = R.string.generic_error_message),
         style = MaterialTheme.typography.bodyLarge,
         color = ColorPalette.NeutralWhite
     )
-
     DoctorWhoWikiButton(
         label = stringResource(id = R.string.generic_error_retry_button_label),
         onClick = onRetryTap
     )
+    Spacer(modifier = Modifier.weight(1f))
 }
 
 @Preview(name = "Error component", group = previewGroup)

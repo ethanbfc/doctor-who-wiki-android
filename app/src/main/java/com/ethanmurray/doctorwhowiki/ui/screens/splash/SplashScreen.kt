@@ -69,9 +69,7 @@ fun SplashScreenContent(
         textAlign = TextAlign.Center
     )
     if (state is State.FetchError) {
-        Spacer(modifier = Modifier.weight(0.25f))
         GenericError(onRetryTap = onRetryTap)
-        Spacer(modifier = Modifier.weight(1f))
     } else {
         GenericLoading()
     }
